@@ -1,0 +1,3 @@
+
+
+du -b password.txt  | awk '{ print $1 }'

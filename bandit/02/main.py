@@ -2,22 +2,17 @@ import os
 from pwn import *
 import enchant
 
+USER = 'bandit1'
 URL = 'bandit.labs.overthewire.org'
 PORT = 2220
-
-USER = 'bandit2'
-MAGIC_COMMAND = 'cat < "--spaces in this filename--"'
-PASSWORD = '263JGJPfgU6LtdEvgfWU1XP5yac29mFx'
+MAGIC_COMMAND = 'cat ~/-'
+PASSWORD = 'ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If'
 
 eng_dictionary = enchant.Dict('en_US')
 shell = ssh(USER, URL, password=PASSWORD, port=PORT)
-
-#interactive_shell = shell.process('/bin/sh')
-#interactive_shell.interactive()
-
 sh = shell.run(MAGIC_COMMAND)
-output = sh.recvallS()
 
+output = sh.recvallS()
 wordlist = output.split()
 possible_passwords = [f'- {string}' for string in wordlist if not eng_dictionary.check(string)]
 print()
