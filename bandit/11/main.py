@@ -5,8 +5,8 @@ import enchant
 URL = 'bandit.labs.overthewire.org'
 PORT = 2220
 
-USER = 'bandit9'
-MAGIC_COMMAND = 'strings data.txt | grep "=="'
+USER = 'bandit10'
+MAGIC_COMMAND = 'cat data.txt | base64 -d'
 
 with open('password.txt', 'r') as file:
     PASSWORD = file.read()
